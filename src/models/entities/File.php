@@ -13,13 +13,13 @@ final class File implements EntityInterface
 
     private $order;
 
-	private $mime;
+    private $mime;
 
-	private $size;
+    private $size;
 
-	private $filename;
+    private $filename;
 
-	private $fileContent;
+    private $fileContent;
 
     public function fillable()
     {

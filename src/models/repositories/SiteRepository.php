@@ -7,7 +7,6 @@ use tvitas\SiteRepo\Models\Entities\Site;
 use tvitas\SiteRepo\Traits\XpathQueryTrait;
 use tvitas\SiteRepo\Environment as Env;
 
-
 class SiteRepository implements RepositoryInterface
 {
     use XpathQueryTrait;

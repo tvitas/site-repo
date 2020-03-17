@@ -1,19 +1,15 @@
 <?php
 namespace tvitas\SiteRepo\Models\Repositories;
+
 use tvitas\SiteRepo\Models\Repositories\BaseRepository;
-use tvitas\SiteRepo\Models\Entities\Meta;
 use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Models\Entities\Meta;
 
 class MetaRepository extends BaseRepository
 {
     public function init()
     {
         $this->content = $this->metaInfo();
-    }
-
-    public function get()
-    {
-        return $this->content;
     }
 
     protected function metaInfo()

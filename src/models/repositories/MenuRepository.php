@@ -8,7 +8,6 @@ use tvitas\SiteRepo\Traits\XpathQueryTrait;
 use tvitas\SiteRepo\Models\Entities\Menu;
 use tvitas\SiteRepo\Environment as Env;
 
-
 class MenuRepository implements RepositoryInterface
 {
     use XpathQueryTrait;

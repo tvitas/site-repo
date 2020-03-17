@@ -3,7 +3,7 @@ namespace tvitas\SiteRepo\Contracts;
 
 interface ArrayListInterface
 {
-	public function all();
+    public function all();
     public function add($item);
     public function count();
     public function first();

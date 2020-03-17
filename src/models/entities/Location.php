@@ -12,7 +12,7 @@ final class Location implements EntityInterface
         'children',
     ];
 
-	private $location;
+    private $location;
 
     private $title;
 

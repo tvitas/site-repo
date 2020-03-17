@@ -7,12 +7,12 @@ class NaiveArrayList implements ArrayListInterface
 {
     use MethodResolverTrait;
 
-	private $items = [];
+    private $items = [];
 
-	public function all()
-	{
-		return $this->items;
-	}
+    public function all()
+    {
+        return $this->items;
+    }
 
     public function add($item)
     {

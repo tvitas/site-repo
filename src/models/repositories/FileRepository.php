@@ -1,5 +1,6 @@
 <?php
 namespace tvitas\SiteRepo\Models\Repositories;
+
 use tvitas\SiteRepo\Models\Repositories\BaseRepository;
 use tvitas\SiteRepo\Collections\NaiveArrayList;
 use tvitas\SiteRepo\Models\Entities\File;
@@ -9,17 +10,6 @@ class FileRepository extends BaseRepository
     public function init()
     {
         $this->content = $this->parseFile();
-    }
-
-    public function get()
-    {
-        return $this->content;
-    }
-
-    // Alias for get()
-    public function file()
-    {
-        return $this->content;
     }
 
     protected function parseFile()
