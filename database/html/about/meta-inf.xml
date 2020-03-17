@@ -2,7 +2,7 @@
 <metainf>
 	<dir>
 		<title>Site repository package</title>
-		<description>Plain HTML site repository package.</description>
+		<description>Repository for a web site based on plain html files</description>
 		<template>single</template>
 		<teaser>0</teaser>
 	</dir>
@@ -10,7 +10,7 @@
 		<name>aim.html</name>
 		<order>0</order>
 		<title>The aim</title>
-		<description>The aim of this package</description>
+		<description>Repository for a web site based on plain html files</description>
 		<template>single</template>	
 		<origin>about</origin>	
 	</file>

@@ -29,6 +29,7 @@
 				</uri>
 			</children>
 		</uri>
+	</menutype>
 	<menutype type="secondary">
 		<type>secondary</type>
 		<title>Secondary navigation</title>

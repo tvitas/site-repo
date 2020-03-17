@@ -1,6 +1,6 @@
 {
     "name": "tvitas/site-repo",
-    "description": "Plain html file based site's repository",
+    "description": "Repository for a web site based on plain html files",
     "type": "package",
     "license": "Public Domain",
     "authors": [

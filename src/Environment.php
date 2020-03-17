@@ -35,7 +35,7 @@ class Environment
         throw new \Exception("Method not allowed");
     }
 
-    private function __wakeup()
+    protected function __wakeup()
     {
         throw new \Exception("Method not allowed");
     }

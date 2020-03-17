@@ -21,7 +21,7 @@ class MenuRepository implements RepositoryInterface
     public function __construct()
     {
         $this->env = Env::getInstance();
-        $this->metaInf = $this->env->get('menu_inf');
+        $this->metaInf = $this->env->get('menu_inf', 'menu-inf.xml');
     }
 
     public function init()

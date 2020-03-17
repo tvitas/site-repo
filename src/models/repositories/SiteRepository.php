@@ -20,7 +20,7 @@ class SiteRepository implements RepositoryInterface
     public function __construct()
     {
         $this->env = Env::getInstance();
-        $this->metaInf = $this->env->get('site_inf');
+        $this->metaInf = $this->env->get('site_inf', 'site-inf.xml');
     }
 
     public function init()

@@ -1,5 +1,6 @@
 <?php
 namespace tvitas\SiteRepo;
+
 use tvitas\SiteRepo\Environment as Env;
 use tvitas\SiteRepo\Models\Repositories\DirectoryRepository;
 use tvitas\SiteRepo\Models\Repositories\FileRepository;
@@ -83,7 +84,6 @@ class SiteRepo
     {
         return (file_exists($this->env->get('database')) . '/' . $this->env->get('site_inf'));
     }
-
 
     private function isMeta()
     {

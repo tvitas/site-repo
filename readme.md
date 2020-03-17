@@ -1,4 +1,4 @@
-### Site Repo
-Site, based on html files, repository.
-#### To do
+## Site Repo
+Repository for a web site based on plain html files
+### To do
 Write doc
