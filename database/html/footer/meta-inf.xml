@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metainf>
+	<dir>
+		<title>Site repository</title>
+		<description></description>
+		<template>single</template>
+		<teaser>0</teaser>
+	</dir>
+	<file name="footer.html">
+		<name>footer.html</name>
+		<order>0</order>
+		<title></title>
+		<description></description>
+		<template>single</template>	
+		<origin>footer</origin>	
+	</file>
+</metainf>

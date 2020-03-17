@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+	<loc>front</loc>
+	<menutype type="offcanvas">
+		<type>offcanvas</type>
+		<title>Offcanvas</title>
+		<description>Offcanvas navigation</description>
+		<template>offcanvas</template>
+		<icon></icon>
+	</menutype>
+	<menutype type="nav">
+		<type>nav</type>
+		<title>Navigation</title>
+		<description></description>
+		<template>nav</template>
+		<icon></icon>
+		<uri>
+			<loc>about</loc>
+			<title>About package</title>
+			<description></description>
+			<icon></icon>
+			<children>
+				<uri>
+					<loc>about/aim.html</loc>
+					<title>The aim</title>
+					<description></description>
+					<icon></icon>
+					<children></children>
+				</uri>
+			</children>
+		</uri>
+	<menutype type="secondary">
+		<type>secondary</type>
+		<title>Secondary navigation</title>
+		<description></description>
+		<template>secondary</template>
+	</menutype>
+</menu>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metainf>
+	<dir>
+		<title>News &amp; Events</title>
+		<description>News and events fired in this project</description>
+		<template>single</template>
+		<teaser>1</teaser>
+	</dir>
+</metainf>

@@ -1,0 +1,28 @@
+{
+    "name": "tvitas/site-repo",
+    "description": "Plain html file based site's repository",
+    "type": "package",
+    "license": "Public Domain",
+    "authors": [
+        {
+            "name": "tvitas",
+            "email": "vitalijus.trainys@gmail.com"
+        }
+    ],
+  
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "tvitas\\SiteRepo\\": "src/",
+            "tvitas\\SiteRepo\\Collections\\": "src/collections",
+            "tvitas\\SiteRepo\\Contracts\\": "src/contracts",
+            "tvitas\\SiteRepo\\Models\\Entities\\": "src/models/entities",
+            "tvitas\\SiteRepo\\Models\\Repositories\\": "src/models/repositories",
+            "tvitas\\SiteRepo\\Traits\\": "src/traits"
+        }
+    }
+}
