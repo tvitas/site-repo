@@ -17,12 +17,7 @@
 
     "autoload": {
         "psr-4": {
-            "tvitas\\SiteRepo\\": "src/",
-            "tvitas\\SiteRepo\\Collections\\": "src/collections",
-            "tvitas\\SiteRepo\\Contracts\\": "src/contracts",
-            "tvitas\\SiteRepo\\Models\\Entities\\": "src/models/entities",
-            "tvitas\\SiteRepo\\Models\\Repositories\\": "src/models/repositories",
-            "tvitas\\SiteRepo\\Traits\\": "src/traits"
+            "tvitas\\SiteRepo\\": "src/"
         }
     }
 }
