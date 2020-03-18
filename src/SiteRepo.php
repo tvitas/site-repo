@@ -17,7 +17,7 @@ class SiteRepo
     public function __construct($path)
     {
         $this->env = Env::getInstance();
-        $this->path = $this->env->get('database_data') . '/' . $path;
+        $this->path = $this->env->get('database_data') . '/' . trim($path, '/');
     }
 
     public function site()
