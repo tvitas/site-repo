@@ -36,7 +36,6 @@ class FileRepository extends BaseRepository
             default:
             {
                 $file->setFileContent($this->path);
-                break;
             }
         }
         $collection->add($file);
