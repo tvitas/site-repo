@@ -21,5 +21,6 @@ return [
         'site-inf.xml',
         'menu-inf.xml',
         'meta-inf.xml',
+        'pass-inf.xml',
     ],
 ];
