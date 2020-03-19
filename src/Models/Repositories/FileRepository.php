@@ -20,21 +20,15 @@ class FileRepository extends BaseRepository
         $file->setMime($mime);
         $file->setSize(filesize($this->path));
         $file->setFilename(basename($this->path));
-        switch ($mime)
-        {
-            case 'text/html':
-            case 'text/plain':
-            {
-                if (!in_array($this->path, $this->reservedNames)) {
-                    ob_start();
-                    include $this->path;
-                    $html = ob_get_clean();
-                    $file->setFileContent($html);
-                }
-                break;
+        if (in_array($mime, $this->contentMime)) {
+            if (!in_array(basename($this->path), $this->reservedNames)) {
+                ob_start();
+                include $this->path;
+                $html = ob_get_clean();
+                $file->setFileContent($html);
             }
-            default:
-            {
+        } else {
+            if (!in_array(basename($this->path), $this->reservedNames)) {
                 $file->setFileContent($this->path);
             }
         }
