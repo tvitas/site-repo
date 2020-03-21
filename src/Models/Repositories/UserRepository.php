@@ -62,7 +62,7 @@ class UserRepository implements RepositoryInterface
                 $setter = 'set' . ucfirst($fillable);
                 $user->$setter(sprintf('%s', $attribute->$fillable));
             }
-            $collection->add($site);
+            $collection->add($user);
         }
         return $collection;
     }

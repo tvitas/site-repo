@@ -7,6 +7,7 @@ use tvitas\SiteRepo\Models\Repositories\FileRepository;
 use tvitas\SiteRepo\Models\Repositories\MenuRepository;
 use tvitas\SiteRepo\Models\Repositories\SiteRepository;
 use tvitas\SiteRepo\Models\Repositories\MetaRepository;
+use tvitas\SiteRepo\Models\Repositories\UserRepository;
 
 class SiteRepo
 {
