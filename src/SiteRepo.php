@@ -7,6 +7,7 @@ use tvitas\SiteRepo\Models\Repositories\FileRepository;
 use tvitas\SiteRepo\Models\Repositories\MenuRepository;
 use tvitas\SiteRepo\Models\Repositories\SiteRepository;
 use tvitas\SiteRepo\Models\Repositories\MetaRepository;
+use tvitas\SiteRepo\Models\Repositories\UserRepository;
 
 class SiteRepo
 {
@@ -29,6 +30,16 @@ class SiteRepo
         $repository = null;
         if ($this->isSite()) {
             $repository = new SiteRepository();
+            $repository->init();
+        }
+        return $repository;
+    }
+
+    public function user()
+    {
+        $repository = null;
+        if ($this->isUser()) {
+            $repository = new UserRepository();
             $repository->init();
         }
         return $repository;
@@ -87,6 +98,11 @@ class SiteRepo
     private function isSite()
     {
         return (file_exists($this->env->get('database')) . '/' . $this->env->get('site_inf'));
+    }
+
+    private function isUser()
+    {
+        return (file_exists($this->env->get('database')) . '/' . $this->env->get('user_inf'));
     }
 
     private function isMeta()
