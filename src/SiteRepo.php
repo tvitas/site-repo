@@ -34,6 +34,16 @@ class SiteRepo
         return $repository;
     }
 
+    public function user()
+    {
+        $repository = null;
+        if ($this->isUser()) {
+            $repository = new UserRepository();
+            $repository->init();
+        }
+        return $repository;
+    }
+
     public function menu()
     {
         $repository = null;
@@ -87,6 +97,11 @@ class SiteRepo
     private function isSite()
     {
         return (file_exists($this->env->get('database')) . '/' . $this->env->get('site_inf'));
+    }
+
+    private function isUser()
+    {
+        return (file_exists($this->env->get('database')) . '/' . $this->env->get('user_inf'));
     }
 
     private function isMeta()
