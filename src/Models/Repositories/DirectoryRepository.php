@@ -30,8 +30,12 @@ class DirectoryRepository extends BaseRepository
                 $query = "//*/file[@name='$item']/order";
                 $infos = $this->xpathQuery($this->path, $query);
                 $order = (!empty($infos)) ? (int) sprintf('%s', $infos[0]) : 0;
+                $query = "//*/file[@name='$item']/origin";
+                $infos = $this->xpathQuery($this->path, $query);
+                $origin = (!empty($infos)) ? (string) sprintf('%s', $infos[0]) : '';
                 $file = new File();
                 $file->setOrder($order);
+                $file->setOrigin($origin);
                 $file->setMime(mime_content_type($this->path . '/' . $item));
                 $file->setSize(filesize($this->path . '/' . $item));
                 $file->setFilename(basename($this->path . '/' . $item));

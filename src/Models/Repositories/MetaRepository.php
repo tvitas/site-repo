@@ -36,7 +36,6 @@ class MetaRepository extends BaseRepository
                 foreach ($infos as $info) {
                     $meta = new Meta;
                     $fillables = $meta->fillable();
-                    //$meta = $this->fill($meta, $info);
                     foreach ($fillables as $fillable) {
                         $setter = 'set' . ucfirst($fillable);
                         $meta->$setter(sprintf('%s', $info->$fillable));

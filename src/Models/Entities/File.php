@@ -9,9 +9,12 @@ final class File implements EntityInterface
         'size',
         'filename',
         'fileContent',
+        'origin',
     ];
 
     private $order;
+
+    private $origin;
 
     private $mime;
 
@@ -21,9 +24,20 @@ final class File implements EntityInterface
 
     private $fileContent;
 
+
     public function fillable()
     {
         return $this->fillable;
+    }
+
+    public function setOrigin($origin)
+    {
+        $this->origin = $origin;
+    }
+
+    public function getOrigin()
+    {
+        return $this->origin;
     }
 
     public function setOrder($order)
