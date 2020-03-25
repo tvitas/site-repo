@@ -15,6 +15,8 @@ class MetaRepository extends BaseRepository
     protected function metaInfo()
     {
         $triggerMime = false;
+        $dirname = '';
+        $query = '';
         $collection = new NaiveArrayList();
         if (is_file($this->path)) {
             $dirname = dirname($this->path);

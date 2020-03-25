@@ -1,7 +1,7 @@
 <?php
 namespace tvitas\SiteRepo;
 
-class Environment
+final class Environment
 {
     private static $instance;
 
@@ -9,8 +9,8 @@ class Environment
 
     public static function getInstance()
     {
-        if (static::$instance === null) {
-            static::$instance = new static();
+        if (null === static::$instance) {
+            static::$instance = new Environment();
         }
         return static::$instance;
     }

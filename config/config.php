@@ -1,7 +1,7 @@
 <?php
 return [
     'database' => __DIR__ . '/../database',
-    'database_data' => __DIR__ '/../database/html',
+    'database_data' => __DIR__ . '/../database/html',
     'site_inf' => 'site-inf.xml',
     'menu_inf' => 'menu-inf.xml',
     'meta_inf' => 'meta-inf.xml',

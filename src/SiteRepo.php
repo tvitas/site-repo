@@ -25,6 +25,11 @@ class SiteRepo
         $this->path = $this->env->get('database_data') . '/' . trim($path, '/');
     }
 
+    public function setFullPath($path)
+    {
+        $this->path = $path;
+    }
+
     public function getPath()
     {
         return $this->path;

@@ -30,7 +30,7 @@ class NaiveArrayList implements ArrayListInterface
         if (0 !== $count) {
             return $this->items[0];
         }
-        return $this->collector;
+        return null;
     }
 
     public function last()
@@ -39,7 +39,7 @@ class NaiveArrayList implements ArrayListInterface
         if (0 !== $count) {
             return $this->items[$count-1];
         }
-        return $this->collector;
+        return null;
     }
 
     public function get($index)
@@ -63,7 +63,6 @@ class NaiveArrayList implements ArrayListInterface
                 for ($i = 0; $i < $count; $i ++) {
                     if ($value === $this->items[$i]->$getter()) {
                         return $i;
-                        break;
                     }
                 }
             }
@@ -79,7 +78,6 @@ class NaiveArrayList implements ArrayListInterface
                 foreach ($this->items as $key => $item) {
                     if ($value === $item->$getter()) {
                         return $this->items[$key];
-                        break;
                     }
                 }
             }
