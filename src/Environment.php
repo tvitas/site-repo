@@ -22,10 +22,7 @@ final class Environment
 
     public static function get($key, $default = null)
     {
-        if (isset(self::$config[$key])) {
-            return self::$config[$key];
-        }
-        return $default;
+        return (null !== self::$config[$key]) ? self::$config[$key] : $default;
     }
 
     protected function __construct() {}

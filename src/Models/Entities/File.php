@@ -1,8 +1,9 @@
 <?php
 namespace tvitas\SiteRepo\Models\Entities;
+use tvitas\SiteRepo\Contracts\FileEntityInterface;
 use tvitas\SiteRepo\Contracts\EntityInterface;
 
-final class File implements EntityInterface
+final class File implements EntityInterface, FileEntityInterface
 {
     private $fillable = [
         'mime',

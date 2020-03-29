@@ -1,8 +1,9 @@
 <?php
 namespace tvitas\SiteRepo\Models\Entities;
+use tvitas\SiteRepo\Contracts\UserEntityInterface;
 use tvitas\SiteRepo\Contracts\EntityInterface;
 
-final class User implements EntityInterface
+final class User implements EntityInterface, UserEntityInterface
 {
     private $fillable = [
         'name',

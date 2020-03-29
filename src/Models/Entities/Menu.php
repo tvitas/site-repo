@@ -1,8 +1,9 @@
 <?php
 namespace tvitas\SiteRepo\Models\Entities;
+use tvitas\SiteRepo\Contracts\MenuEntityInterface;
 use tvitas\SiteRepo\Contracts\EntityInterface;
 
-final class Menu implements EntityInterface
+final class Menu implements EntityInterface, MenuEntityInterface
 {
     private $fillable = [
         'type',

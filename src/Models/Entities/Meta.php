@@ -1,8 +1,9 @@
 <?php
 namespace tvitas\SiteRepo\Models\Entities;
+use tvitas\SiteRepo\Contracts\MetaEntityInterface;
 use tvitas\SiteRepo\Contracts\EntityInterface;
 
-final class Meta implements EntityInterface
+final class Meta implements EntityInterface, MetaEntityInterface
 {
 	private $fillable = [
 		'name',

@@ -1,8 +1,9 @@
 <?php
 namespace tvitas\SiteRepo\Models\Entities;
+use tvitas\SiteRepo\Contracts\LocationEntityInterface;
 use tvitas\SiteRepo\Contracts\EntityInterface;
 
-final class Location implements EntityInterface
+final class Location implements EntityInterface, LocationEntityInterface
 {
     private $fillable = [
         'location',
