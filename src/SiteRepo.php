@@ -1,15 +1,16 @@
 <?php
 namespace tvitas\SiteRepo;
 
-use tvitas\SiteRepo\Environment as Env;
 use tvitas\SiteRepo\Models\Repositories\DirectoryRepository;
 use tvitas\SiteRepo\Models\Repositories\FileRepository;
 use tvitas\SiteRepo\Models\Repositories\MenuRepository;
 use tvitas\SiteRepo\Models\Repositories\SiteRepository;
 use tvitas\SiteRepo\Models\Repositories\MetaRepository;
 use tvitas\SiteRepo\Models\Repositories\UserRepository;
+use tvitas\SiteRepo\Contracts\SiteRepoInterface;
+use tvitas\SiteRepo\Environment as Env;
 
-class SiteRepo
+class SiteRepo implements SiteRepoInterface
 {
     private $env;
 
