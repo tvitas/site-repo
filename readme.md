@@ -56,7 +56,7 @@ class SiteController
 	{
 		$this->repo = $repo;
 		$this->view = $view;
-        $this->pageUri = $request->getPathInfo();
+		$this->pageUri = $request->getPathInfo();
 	}	
 
 	public function show() : string
@@ -65,22 +65,22 @@ class SiteController
 		$this->repo->setPath($this->pageUri);
 
 		// Get meta information of directory, aka "Category"
-        $meta = $this->repo->meta()->get();
-        // Get site meta information
-        $site = $this->repo->site()->get()->sort('order', 'asc');
-        // Get menu
-        $menu = $this->repo->menu()->get();
-        // Get directory content
-        $content = $this->repo->content()->get();
+		$meta = $this->repo->meta()->get();
+		// Get site meta information
+		$site = $this->repo->site()->get()->sort('order', 'asc');
+		// Get menu
+		$menu = $this->repo->menu()->get();
+		// Get directory content
+		$content = $this->repo->content()->get();
 
 		return $this->view->render('page_template',
-            [
-                'meta' => $meta,
-                'site' => $site,
-                'menu' => $menu,
-                'content' => $content,
-            ]
-        );
+			[
+				'meta' => $meta,
+				'site' => $site,
+				'menu' => $menu,
+				'content' => $content,
+			]
+		);
 	}
 }
 ```
