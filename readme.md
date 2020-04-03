@@ -67,11 +67,11 @@ class SiteController
 		// Get meta information of directory, aka "Category"
 		$meta = $this->repo->meta()->get();
 		// Get site meta information
-		$site = $this->repo->site()->get()->sort('order', 'asc');
+		$site = $this->repo->site()->get();
 		// Get menu
 		$menu = $this->repo->menu()->get();
 		// Get directory content
-		$content = $this->repo->content()->get();
+		$content = $this->repo->content()->get()->sort('order', 'asc');
 
 		return $this->view->render('page_template',
 			[
