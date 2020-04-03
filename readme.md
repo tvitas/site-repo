@@ -71,7 +71,7 @@ class SiteController
 		// Get menu
 		$menu = $this->repo->menu()->get();
 		// Get directory content
-		$content = $this->repo->content()->get()->sort('order', 'asc';
+		$content = $this->repo->content()->get()->sort('order', 'asc');
 
 		return $this->view->render('page_template',
 			[
