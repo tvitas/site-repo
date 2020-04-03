@@ -7,7 +7,7 @@ and plain text files with html markup (or not), which represents content "nodes"
 
 Example site content and meta xml files placed in the ``site-repo/database`` and ``site-repo/database/html`` directories.
 
-Example configuration file placed in the site-repo/config directory.
+Example configuration file placed in the ``site-repo/config directory``.
 
 In a client (framework) side, create a repository factory object:
 ```php
