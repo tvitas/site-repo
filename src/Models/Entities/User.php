@@ -40,7 +40,7 @@ final class User implements EntityInterface, UserEntityInterface
 
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = strtolower($email);
     }
 
     public function getEmail()
