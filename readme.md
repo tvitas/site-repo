@@ -1,5 +1,5 @@
 ## Site Repo
-Repository for a web site based on plain html files. A part of [cccf site project](https://github.com/tvitas/cccf "CCCF site On Github").
+Repository for a web site based on plain html files. A part of A part of [naive site project](https://github.com/tvitas/naive-site "Naive site On Github").
 
 ### Basic usage
 Create directory structure, where directories represents URLs of the site (aka "routes" or "categories") 
