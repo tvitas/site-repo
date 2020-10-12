@@ -22,7 +22,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     protected $env;
 
-	public function __construct($path)
+    public function __construct($path)
     {
         $this->env = Env::getInstance();
         $this->path = $path;
