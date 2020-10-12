@@ -23,7 +23,7 @@ abstract class BaseRepository implements RepositoryInterface
     protected $env;
 
 	public function __construct($path)
-	{
+    {
         $this->env = Env::getInstance();
         $this->path = $path;
         $this->contentMime = $this->env->get('contentMime',
@@ -41,7 +41,7 @@ abstract class BaseRepository implements RepositoryInterface
                 'menu-inf.xml',
             ]);
         $this->metaInf = $this->env->get('meta_inf', 'meta-inf.xml');
-	}
+    }
 
     abstract public function init();
 
