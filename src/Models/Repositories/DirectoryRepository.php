@@ -1,23 +1,30 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Models\Repositories\BaseRepository;
 use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
 use tvitas\SiteRepo\Models\Entities\File;
 
 class DirectoryRepository extends BaseRepository
 {
-    public function init()
+    /**
+     * @return void
+     */
+    public function init(): void
     {
         $this->content = $this->parseDir();
     }
 
-    protected function parseDir()
+    /**
+     * @return ArrayListInterface
+     */
+    protected function parseDir(): ArrayListInterface
     {
         $files = array_values(array_diff(scandir($this->path), ['.', '..']));
         $files = array_filter($files,
-            function($item)
-            {
+            function ($item) {
                 $mime = mime_content_type($this->path . '/' . $item);
                 return ((is_file($this->path . '/' . $item))
                     and (in_array($mime, $this->contentMime))
@@ -26,13 +33,13 @@ class DirectoryRepository extends BaseRepository
         );
         $collection = new NaiveArrayList();
         array_walk($files,
-            function($item) use (&$collection) {
+            function ($item) use (&$collection) {
                 $query = "//*/file[@name='$item']/order";
                 $infos = $this->xpathQuery($this->path, $query);
-                $order = (!empty($infos)) ? (int) sprintf('%s', $infos[0]) : 0;
+                $order = (!empty($infos)) ? (int)sprintf('%s', $infos[0]) : 0;
                 $query = "//*/file[@name='$item']/origin";
                 $infos = $this->xpathQuery($this->path, $query);
-                $origin = (!empty($infos)) ? (string) sprintf('%s', $infos[0]) : '';
+                $origin = (!empty($infos)) ? sprintf('%s', $infos[0]) : '';
                 $file = new File();
                 $file->setOrder($order);
                 $file->setOrigin($origin);

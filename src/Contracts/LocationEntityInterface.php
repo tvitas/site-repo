@@ -1,16 +1,62 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Contracts;
 
 interface LocationEntityInterface
 {
-    public function setLocation($location);
-    public function getLocation();
-    public function setTitle($title);
-    public function getTitle();
-    public function setDescription($description);
-    public function getDescription();
-    public function setIcon($icon);
-    public function getIcon();
-    public function setChildren($children);
-    public function getChildren();
+    /**
+     * @param string $location
+     * @return void
+     */
+    public function setLocation(string $location): void;
+
+    /**
+     * @return string|null
+     */
+    public function getLocation(): ?string;
+
+    /**
+     * @param string $title
+     * @return void
+     */
+    public function setTitle(string $title): void;
+
+    /**
+     * @return string|null
+     */
+    public function getTitle(): ?string;
+
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription(string $description): void;
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string;
+
+    /**
+     * @param string $icon
+     * @return void
+     */
+    public function setIcon(string $icon): void;
+
+    /**
+     * @return string|null
+     */
+    public function getIcon(): ?string;
+
+    /**
+     * @param ArrayListInterface $children
+     * @return void
+     */
+    public function setChildren(ArrayListInterface $children): void;
+
+    /**
+     * @return ArrayListInterface|null
+     */
+    public function getChildren(): ?ArrayListInterface;
 }

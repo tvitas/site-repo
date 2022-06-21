@@ -1,18 +1,73 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Contracts;
 
 interface MetaEntityInterface
 {
-	public function setName($name);
-	public function getName();
-	public function setTitle($title);
-	public function getTitle();
-	public function setDescription($description);
-	public function getDescription();
-	public function setTemplate($template);
-	public function getTemplate();
-	public function setTeaser($teaser);
-	public function getTeaser();
-	public function setOrigin($origin);
-	public function getOrigin();
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName(string $name): void;
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string;
+
+    /**
+     * @param string $title
+     * @return void
+     */
+    public function setTitle(string $title): void;
+
+    /**
+     * @return string|null
+     */
+    public function getTitle(): ?string;
+
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription(string $description): void;
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string;
+
+    /**
+     * @param string $template
+     * @return void
+     */
+    public function setTemplate(string $template): void;
+
+    /**
+     * @return string|null
+     */
+    public function getTemplate(): ?string;
+
+    /**
+     * @param bool $teaser
+     * @return void
+     */
+    public function setTeaser(bool $teaser): void;
+
+    /**
+     * @return bool
+     */
+    public function getTeaser(): bool;
+
+    /**
+     * @param string $origin
+     * @return void
+     */
+    public function setOrigin(string $origin): void;
+
+    /**
+     * @return string|null
+     */
+    public function getOrigin(): ?string;
 }

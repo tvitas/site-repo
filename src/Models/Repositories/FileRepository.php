@@ -1,18 +1,26 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Models\Repositories\BaseRepository;
 use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
 use tvitas\SiteRepo\Models\Entities\File;
 
 class FileRepository extends BaseRepository
 {
-    public function init()
+    /**
+     * @return void
+     */
+    public function init(): void
     {
         $this->content = $this->parseFile();
     }
 
-    protected function parseFile()
+    /**
+     * @return ArrayListInterface
+     */
+    protected function parseFile(): ArrayListInterface
     {
         $collection = new NaiveArrayList();
         $file = new File();

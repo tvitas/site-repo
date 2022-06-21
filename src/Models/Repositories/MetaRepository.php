@@ -1,18 +1,21 @@
 <?php
+
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Models\Repositories\BaseRepository;
 use tvitas\SiteRepo\Collections\NaiveArrayList;
 use tvitas\SiteRepo\Models\Entities\Meta;
 
 class MetaRepository extends BaseRepository
 {
-    public function init()
+    /**
+     * @return void
+     */
+    public function init(): void
     {
         $this->content = $this->metaInfo();
     }
 
-    protected function metaInfo()
+    protected function metaInfo(): NaiveArrayList
     {
         $triggerMime = false;
         $dirname = '';
@@ -34,16 +37,16 @@ class MetaRepository extends BaseRepository
         }
 
         if ($triggerMime) {
-                $infos = $this->xpathQuery($dirname, $query);
-                foreach ($infos as $info) {
-                    $meta = new Meta;
-                    $fillables = $meta->fillable();
-                    foreach ($fillables as $fillable) {
-                        $setter = 'set' . ucfirst($fillable);
-                        $meta->$setter(sprintf('%s', $info->$fillable));
-                    }
-                    $collection->add($meta);
+            $infos = $this->xpathQuery($dirname, $query);
+            foreach ($infos as $info) {
+                $meta = new Meta;
+                $fillables = $meta->fillable();
+                foreach ($fillables as $fillable) {
+                    $setter = 'set' . ucfirst($fillable);
+                    $meta->$setter(sprintf('%s', $info->$fillable));
                 }
+                $collection->add($meta);
+            }
         }
         return $collection;
     }

@@ -1,40 +1,70 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo;
+
+use Exception;
 
 final class Environment
 {
-    private static $instance;
+    /**
+     * @var Environment|null
+     */
+    private static ?Environment $instance = null;
 
-    private static $config = [];
+    /**
+     * @var array
+     */
+    private static array $config = [];
 
-    public static function getInstance()
+    /**
+     * @return Environment|null
+     */
+    public static function getInstance(): ?Environment
     {
-        if (null === static::$instance) {
-            static::$instance = new Environment();
+        if (null === Environment::$instance) {
+            self::$instance = new Environment();
         }
-        return static::$instance;
+
+        return self::$instance;
     }
 
-    public static function load($config = __DIR__ . '/../config/config.php')
+    /**
+     * @param string $config
+     * @return void
+     */
+    public static function load(string $config = __DIR__ . '/../config/config.php'): void
     {
         self::$config = require $config;
     }
 
-    public static function get($key, $default = null)
+    /**
+     * @param string $key
+     * @param mixed|null $default
+     * @return mixed|null
+     */
+    public static function get(string $key, mixed $default = null)
     {
         return (null !== self::$config[$key]) ? self::$config[$key] : $default;
     }
 
-    protected function __construct() {}
-
-    protected function __clone()
+    protected function __construct()
     {
-        throw new \Exception("Method not allowed");
     }
 
-    protected function __wakeup()
+    /**
+     * @throws Exception
+     */
+    public function __clone()
     {
-        throw new \Exception("Method not allowed");
+        throw new Exception("Method not allowed");
     }
 
+    /**
+     * @throws Exception
+     */
+    public function __wakeup()
+    {
+        throw new Exception("Method not allowed");
+    }
 }

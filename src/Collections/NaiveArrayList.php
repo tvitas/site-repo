@@ -1,30 +1,48 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Collections;
+
 use tvitas\SiteRepo\Contracts\ArrayListInterface;
+use tvitas\SiteRepo\Contracts\EntityInterface;
 use tvitas\SiteRepo\Traits\MethodResolverTrait;
 
 class NaiveArrayList implements ArrayListInterface
 {
     use MethodResolverTrait;
 
-    private $items = [];
+    /** @var array|null */
+    private ?array $items;
 
-    public function all()
+    /**
+     * @return ArrayListInterface|null
+     */
+    public function all(): ?ArrayListInterface
     {
         return $this->items;
     }
 
-    public function add($item)
+    /**
+     * @param EntityInterface $item
+     * @return void
+     */
+    public function add(EntityInterface $item): void
     {
-        array_push($this->items, $item);
+        $this->items[] = $item;
     }
 
-    public function count()
+    /**
+     * @return int
+     */
+    public function count(): int
     {
         return count($this->items);
     }
 
-    public function first()
+    /**
+     * @return mixed|null
+     */
+    public function first(): mixed
     {
         $count = $this->count();
         if (0 !== $count) {
@@ -33,16 +51,23 @@ class NaiveArrayList implements ArrayListInterface
         return null;
     }
 
-    public function last()
+    /**
+     * @return mixed|null
+     */
+    public function last(): mixed
     {
         $count = $this->count();
         if (0 !== $count) {
-            return $this->items[$count-1];
+            return $this->items[$count - 1];
         }
         return null;
     }
 
-    public function get($index)
+    /**
+     * @param int $index
+     * @return mixed|null
+     */
+    public function get(int $index): mixed
     {
         $count = $this->count();
         if (0 !== $count) {
@@ -54,13 +79,18 @@ class NaiveArrayList implements ArrayListInterface
         return null;
     }
 
-    public function indexOf($value, $member)
+    /**
+     * @param mixed $value
+     * @param string $member
+     * @return int
+     */
+    public function indexOf(mixed $value, string $member): int
     {
         $count = $this->count();
         if (0 !== $count) {
             $getter = $this->resolveMethodAndProperty($member, $this->items[0]);
             if ("" !== $getter) {
-                for ($i = 0; $i < $count; $i ++) {
+                for ($i = 0; $i < $count; $i++) {
                     if ($value === $this->items[$i]->$getter()) {
                         return $i;
                     }
@@ -70,7 +100,12 @@ class NaiveArrayList implements ArrayListInterface
         return -1;
     }
 
-    public function find($value, $member)
+    /**
+     * @param mixed $value
+     * @param string $member
+     * @return EntityInterface|null
+     */
+    public function find(mixed $value, string $member): ?EntityInterface
     {
         if (0 !== $this->count()) {
             $getter = $this->resolveMethodAndProperty($member, $this->items[0]);
@@ -85,20 +120,26 @@ class NaiveArrayList implements ArrayListInterface
         return null;
     }
 
-    public function sort($member, $order)
+
+    /**
+     * @param string $member
+     * @param string $order
+     * @return ArrayListInterface
+     */
+    public function sort(string $member, string $order): ArrayListInterface
     {
         if ($this->count() > 1) {
             $getter = $this->resolveMethodAndProperty($member, $this->items[0]);
             if ($getter) {
-                usort($this->items,
-                function ($a, $b) use ($order, $getter)
-                {
-                    $valueA = $a->$getter();
-                    $valueB = $b->$getter();
-                    return ($valueA <=> $valueB) * ($order === 'desc' ? -1 : 1);
-                });
+                $array = (array)$this->items;
+                usort($array,
+                    function ($a, $b) use ($order, $getter) {
+                        $valueA = $a->$getter();
+                        $valueB = $b->$getter();
+                        return ($valueA <=> $valueB) * ($order === 'desc' ? -1 : 1);
+                    });
             }
         }
-       return $this;
+        return $this;
     }
 }

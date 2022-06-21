@@ -1,8 +1,17 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Contracts;
 
 interface RepositoryInterface
 {
-	public function init();
-	public function get();
+    /**
+     * @return void
+     */
+    public function init(): void;
+
+    /**
+     * @return ArrayListInterface|null
+     */
+    public function get(): ?ArrayListInterface;
 }

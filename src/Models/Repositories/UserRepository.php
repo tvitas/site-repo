@@ -1,21 +1,28 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Contracts\RepositoryInterface;
 use tvitas\SiteRepo\Collections\NaiveArrayList;
-use tvitas\SiteRepo\Traits\XpathQueryTrait;
-use tvitas\SiteRepo\Models\Entities\User;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
+use tvitas\SiteRepo\Contracts\EntityInterface;
+use tvitas\SiteRepo\Contracts\RepositoryInterface;
 use tvitas\SiteRepo\Environment as Env;
+use tvitas\SiteRepo\Models\Entities\User;
+use tvitas\SiteRepo\Traits\XpathQueryTrait;
 
 class UserRepository implements RepositoryInterface
 {
     use XpathQueryTrait;
 
-    private $content;
+    /** @var ArrayListInterface */
+    private ArrayListInterface $content;
 
-    private $env;
+    /** @var Env */
+    private Env $env;
 
-    private $metaInf;
+    /** @var string */
+    private string $metaInf;
 
     public function __construct()
     {
@@ -23,32 +30,53 @@ class UserRepository implements RepositoryInterface
         $this->metaInf = $this->env->get('user_inf', 'user-inf.xml');
     }
 
-    public function init()
+    /**
+     * @return void
+     */
+    public function init(): void
     {
         $this->content = $this->parseXmlUser();
     }
 
-    public function get()
+    /**
+     * @return ArrayListInterface
+     */
+    public function get(): ArrayListInterface
     {
         return $this->content;
     }
 
-    public function byName($name)
+    /**
+     * @param string $name
+     * @return EntityInterface
+     */
+    public function byName(string $name): EntityInterface
     {
         return $this->content->find($name, 'name');
     }
 
-    public function byEmail($email)
+    /**
+     * @param string $email
+     * @return EntityInterface
+     */
+    public function byEmail(string $email): EntityInterface
     {
         return $this->content->find($email, 'email');
     }
 
-    public function byRole($role)
+    /**
+     * @param string $role
+     * @return EntityInterface
+     */
+    public function byRole(string $role): EntityInterface
     {
         return $this->content->find($role, 'role');
     }
 
-    private function parseXmlUser()
+    /**
+     * @return ArrayListInterface
+     */
+    private function parseXmlUser(): ArrayListInterface
     {
         $collection = new NaiveArrayList();
         $dirname = $this->env->get('database');
@@ -56,6 +84,7 @@ class UserRepository implements RepositoryInterface
         $attributes = $this->xpathQuery($dirname, $query);
         foreach ($attributes as $attribute) {
             $user = new User();
+            /** @var array $fillables */
             $fillables = $user->fillable();
             foreach ($fillables as $fillable) {
                 $fillable = strtolower($fillable);
