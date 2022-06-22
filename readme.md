@@ -1,24 +1,32 @@
 ## Site Repo
-Repository for a web site based on plain html files. A part of [naive site project](https://github.com/tvitas/naive-site "Naive site On Github").
+
+Repository for a website based on plain html files. A part
+of [naive site project](https://github.com/tvitas/naive-site "Naive site On Github").
 
 ### Basic usage
-Create directory structure, where directories represents URLs of the site (aka "routes" or "categories") 
+
+Create directory structure, where directories represents URLs of the site (aka "routes" or "categories")
 and plain text files with html markup (or not), which represents content "nodes" (aka "DB records").
 
-Example site content and meta xml files placed in the ``site-repo/database`` and ``site-repo/database/html`` directories.
+Example site content and meta xml files placed in the ``site-repo/database`` and ``site-repo/database/html``
+directories.
 
-Example configuration file placed in the ``site-repo/config directory``.
+Example configuration file placed in the ``site-repo/config`` directory.
 
 In a client (framework) side, create a repository factory object:
+
 ```php
 <?php
 // Using PHP-DI container
-$siteRepo = function(
-	tvitas\SiteRepo\Environment::getInstance()->load('path/to/site-repo-config.php');
-	return new tvitas\SiteRepo\SiteRepo();
- );
+'tvitas\SiteRepo\SiteRepo' => DI\create()
+    ->constructor(
+        tvitas\SiteRepo\Environment::getInstance(), 
+        __DIR__ . '/Your/Project/Config/Dir/your-site-repo-config-file.php'
+    ),
 ```
+
 Factory methods:
+
 ```php
 $siteRepo->site(); // returns SiteRepository object/null
 $siteRepo->meta(); // returns MetaRepository object/null
@@ -26,9 +34,12 @@ $siteRepo->content(); // returns DirectoryRepository or FileRepository objects/n
 $siteRepo->user(); // returns UserRepository object/null
 $siteRepo->menu(); // returns MenuRepository object/null
 ```
-Each repository has method ``get()``, which returns a ``NaiveArrayList`` collection of Site, Menu, Meta, File and User objects.
+
+Each repository has method ``get()``, which returns a ``NaiveArrayList`` collection of Site, Menu, Meta, File and User
+objects.
 
 Site repository usage in controller example:
+
 ```php
 <?php
 namespace Your\Namespace\Controller;
@@ -84,7 +95,9 @@ class SiteController
 	}
 }
 ```
+
 NaiveArrayList collection has methods:
+
 ```php
 all(); // returns all list items
 add($item); // push item to the list
