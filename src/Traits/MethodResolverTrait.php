@@ -1,4 +1,5 @@
 <?php
+
 namespace tvitas\SiteRepo\Traits;
 
 trait MethodResolverTrait
@@ -22,11 +23,11 @@ trait MethodResolverTrait
             }
         }
 
-	   foreach ($methods as $method) {
-    	   if ($getter === $method->name) {
-        	   $triggerFoundGetter = true;
-        	   break;
-    	   }
+        foreach ($methods as $method) {
+            if ($getter === $method->name) {
+                $triggerFoundGetter = true;
+                break;
+            }
         }
         return ($triggerFoundMember and $triggerFoundGetter) ? $getter : "";
     }

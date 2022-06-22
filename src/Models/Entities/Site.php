@@ -1,54 +1,83 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Models\Entities;
-use tvitas\SiteRepo\Contracts\SiteEntityInterface;
+
 use tvitas\SiteRepo\Contracts\EntityInterface;
+use tvitas\SiteRepo\Contracts\SiteEntityInterface;
 
 final class Site implements EntityInterface, SiteEntityInterface
 {
-	private $fillable = [
-		'name',
-		'slogan',
-		'acronym',
-	];
+    /** @var array|string[] */
+    private array $fillable = [
+        'name',
+        'slogan',
+        'acronym',
+    ];
 
-	private $name;
+    /** @var string */
+    private string $name;
+    /** @var string */
+    private string $slogan;
+    /** @var string */
+    private string $acronym;
 
-	private $slogan;
+    /**
+     * @return array|string[]
+     */
+    public function fillable(): array
+    {
+        return $this->fillable;
+    }
 
-	private $acronym;
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
 
-	public function fillable()
-	{
-		return $this->fillable;
-	}
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
-	public function setName($name)
-	{
-		$this->name = $name;
-	}
+    /**
+     * @param string $slogan
+     * @return void
+     */
+    public function setSlogan(string $slogan): void
+    {
+        $this->slogan = $slogan;
+    }
 
-	public function getName()
-	{
-		return $this->name;
-	}
+    /**
+     * @return string
+     */
+    public function getSlogan(): string
+    {
+        return $this->slogan;
+    }
 
-	public function setSlogan($slogan)
-	{
-		$this->slogan = $slogan;
-	}
+    /**
+     * @param string $acronym
+     * @return void
+     */
+    public function setAcronym(string $acronym): void
+    {
+        $this->acronym = $acronym;
+    }
 
-	public function getSlogan()
-	{
-		return $this->slogan;
-	}
-
-	public function setAcronym($acronym)
-	{
-		$this->acronym = $acronym;
-	}
-
-	public function getAcronym()
-	{
-		return $this->acronym;
-	}
+    /**
+     * @return string
+     */
+    public function getAcronym(): string
+    {
+        return $this->acronym;
+    }
 }

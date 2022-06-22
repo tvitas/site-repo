@@ -4,7 +4,7 @@
         <title>Site repository package</title>
         <description>Repository for a website based on plain html files</description>
         <template>single</template>
-        <teaser>0</teaser>
+        <teaser>false</teaser>
     </dir>
     <file name="aim.html">
         <name>aim.html</name>

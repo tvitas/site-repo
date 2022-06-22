@@ -1,11 +1,16 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Models\Entities;
-use tvitas\SiteRepo\Contracts\MenuEntityInterface;
+
 use tvitas\SiteRepo\Contracts\EntityInterface;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
+use tvitas\SiteRepo\Contracts\MenuEntityInterface;
 
 final class Menu implements EntityInterface, MenuEntityInterface
 {
-    private $fillable = [
+    /** @var array|string[] */
+    private array $fillable = [
         'type',
         'title',
         'description',
@@ -13,80 +18,125 @@ final class Menu implements EntityInterface, MenuEntityInterface
         'template',
         'items',
     ];
+    /** @var string */
+    private string $type;
+    /** @var string */
+    private string $title;
+    /** @var string */
+    private string $description;
+    /** @var string */
+    private string $icon;
+    /** @var string */
+    private string $template;
+    /** @var ArrayListInterface */
+    private ArrayListInterface $items;
 
-    private $type;
-
-    private $title;
-
-    private $description;
-
-    private $icon;
-
-    private $template;
-
-    private $items;
-
-    public function fillable()
+    /**
+     * @return array|string[]|null
+     */
+    public function fillable(): ?array
     {
         return $this->fillable;
     }
 
-    public function setType($type)
+    /**
+     * @param string $type
+     * @return void
+     */
+    public function setType(string $type): void
     {
         $this->type = $type;
     }
 
-    public function setTitle($title)
+    /**
+     * @param string $title
+     * @return void
+     */
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    public function setDescription($description)
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
-    public function setIcon($icon)
+    /**
+     * @param string $icon
+     * @return void
+     */
+    public function setIcon(string $icon): void
     {
         $this->icon = $icon;
     }
 
-    public function setItems($items)
+    /**
+     * @param ArrayListInterface $items
+     * @return void
+     */
+    public function setItems(ArrayListInterface $items): void
     {
         $this->items = $items;
     }
 
-    public function getType()
+    /**
+     * @return string|null
+     */
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function getTitle()
+    /**
+     * @return string|null
+     */
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function getDescription()
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function getIcon()
+    /**
+     * @return string|null
+     */
+    public function getIcon(): ?string
     {
         return $this->icon;
     }
 
-    public function getItems()
+    /**
+     * @return ArrayListInterface|null
+     */
+    public function getItems(): ?ArrayListInterface
     {
         return $this->items;
     }
 
-    public function setTemplate($template)
+    /**
+     * @param string $template
+     * @return void
+     */
+    public function setTemplate(string $template): void
     {
         $this->template = $template;
     }
 
-    public function getTemplate()
+    /**
+     * @return string|null
+     */
+    public function getTemplate(): ?string
     {
         return $this->template;
     }

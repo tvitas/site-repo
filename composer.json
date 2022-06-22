@@ -1,23 +1,23 @@
 {
-    "name": "tvitas/site-repo",
-    "description": "Repository for a web site based on plain html files",
-    "type": "package",
-    "license": "Public Domain",
-    "authors": [
-        {
-            "name": "tvitas",
-            "email": "vitalijus.trainys@gmail.com"
-        }
-    ],
-  
-    "minimum-stability": "dev",
-    "require": {
-        "php": ">=7.0"
-    },
-
-    "autoload": {
-        "psr-4": {
-            "tvitas\\SiteRepo\\": "src/"
-        }
+  "name": "tvitas/site-repo",
+  "description": "Repository for a web site based on plain html files",
+  "type": "package",
+  "license": "Public Domain",
+  "authors": [
+    {
+      "name": "tvitas",
+      "email": "vitalijus.trainys@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=8.0",
+    "ext-fileinfo": "*",
+    "ext-simplexml": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "tvitas\\SiteRepo\\": "src/"
+    }
+  }
 }

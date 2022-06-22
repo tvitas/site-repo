@@ -1,11 +1,15 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Models\Entities;
-use tvitas\SiteRepo\Contracts\UserEntityInterface;
+
 use tvitas\SiteRepo\Contracts\EntityInterface;
+use tvitas\SiteRepo\Contracts\UserEntityInterface;
 
 final class User implements EntityInterface, UserEntityInterface
 {
-    private $fillable = [
+    /** @var array|string[] */
+    private array $fillable = [
         'name',
         'email',
         'password',
@@ -13,67 +17,106 @@ final class User implements EntityInterface, UserEntityInterface
         'description',
     ];
 
-    private $name;
+    /** @var string */
+    private string $name;
+    /** @var string */
+    private string $email;
+    /** @var string */
+    private string $password;
+    /** @var string */
+    private string $role;
+    /** @var string */
+    private string $description;
 
-    private $email;
-
-    private $password;
-
-    private $role;
-
-    private $description;
-
-    public function fillable()
+    /**
+     * @return array|string[]|null
+     */
+    public function fillable(): ?array
     {
         return $this->fillable;
     }
 
-    public function setName($name)
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    public function getName()
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setEmail($email)
+    /**
+     * @param string $email
+     * @return void
+     */
+    public function setEmail(string $email): void
     {
         $this->email = strtolower($email);
     }
 
-    public function getEmail()
+    /**
+     * @return string|null
+     */
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setPassword($password)
+    /**
+     * @param string $password
+     * @return void
+     */
+    public function setPassword(string $password): void
     {
         $this->password = $password;
     }
 
-    public function getPassword()
+    /**
+     * @return string|null
+     */
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setRole($role)
+    /**
+     * @param string $role
+     * @return void
+     */
+    public function setRole(string $role): void
     {
         $this->role = $role;
     }
 
-    public function getRole()
+    /**
+     * @return string|null
+     */
+    public function getRole(): ?string
     {
         return $this->role;
     }
 
-    public function setDescription($description)
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
-    public function getDescription()
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
     {
         return $this->description;
     }

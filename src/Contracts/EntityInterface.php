@@ -1,7 +1,12 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Contracts;
 
 interface EntityInterface
 {
-    public function fillable();
+    /**
+     * @return array|null
+     */
+    public function fillable(): ?array;
 }

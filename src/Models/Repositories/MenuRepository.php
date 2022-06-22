@@ -1,22 +1,30 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Contracts\RepositoryInterface;
-use tvitas\SiteRepo\Collections\NaiveArrayList;
-use tvitas\SiteRepo\Models\Entities\Location;
-use tvitas\SiteRepo\Traits\XpathQueryTrait;
-use tvitas\SiteRepo\Models\Entities\Menu;
+use SimpleXMLElement;
 use tvitas\SiteRepo\Environment as Env;
+use tvitas\SiteRepo\Models\Entities\Menu;
+use tvitas\SiteRepo\Traits\XpathQueryTrait;
+use tvitas\SiteRepo\Models\Entities\Location;
+use tvitas\SiteRepo\Contracts\EntityInterface;
+use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
+use tvitas\SiteRepo\Contracts\RepositoryInterface;
 
 class MenuRepository implements RepositoryInterface
 {
     use XpathQueryTrait;
 
-    private $content;
+    /** @var ArrayListInterface */
+    private ArrayListInterface $content;
 
-    private $env;
+    /** @var Env */
+    private Env $env;
 
-    private $metaInf;
+    /** @var string|null */
+    private ?string $metaInf;
 
     public function __construct()
     {
@@ -24,30 +32,43 @@ class MenuRepository implements RepositoryInterface
         $this->metaInf = $this->env->get('menu_inf', 'menu-inf.xml');
     }
 
-    public function init()
+
+    /**
+     * @return void
+     */
+    public function init(): void
     {
         $this->content = $this->parseXmlMenu();
     }
 
-    public function get()
+    /**
+     * @return ArrayListInterface
+     */
+    public function get(): ArrayListInterface
     {
         return $this->content;
     }
 
-    public function byType($type)
+    /**
+     * @param string $type
+     * @return EntityInterface
+     */
+    public function byType(string $type): EntityInterface
     {
         return $this->content->find($type, 'type');
     }
 
-    private function parseXmlMenu()
+    /**
+     * @return ArrayListInterface
+     */
+    private function parseXmlMenu(): ArrayListInterface
     {
         $query = '//*/menutype';
         $dirname = $this->env->get('database');
         $collection = new NaiveArrayList();
-        $menuitems = $this->xpathQuery($dirname, $query);
-        foreach ($menuitems as $item) {
+        $menuItems = $this->xpathQuery($dirname, $query);
+        foreach ($menuItems as $item) {
             $menu = new Menu;
-            $uris = [];
             $menu->setType(sprintf('%s', $item->type));
             $menu->setTitle(sprintf('%s', $item->title));
             $menu->setDescription(sprintf('%s', $item->description));
@@ -59,10 +80,14 @@ class MenuRepository implements RepositoryInterface
         return $collection;
     }
 
-    private function parseUris($uris)
+    /**
+     * @param SimpleXMLElement $uris
+     * @return ArrayListInterface
+     */
+    private function parseUris(SimpleXMLElement $uris): ArrayListInterface
     {
         $collection = new NaiveArrayList();
-        foreach ($uris as $key => $uri) {
+        foreach ($uris as $uri) {
             $location = new Location;
             $location->setLocation(sprintf('%s', $uri->loc));
             $location->setTitle(sprintf('%s', $uri->title));

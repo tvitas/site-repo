@@ -1,21 +1,24 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Contracts\RepositoryInterface;
-use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Environment as Env;
 use tvitas\SiteRepo\Models\Entities\Site;
 use tvitas\SiteRepo\Traits\XpathQueryTrait;
-use tvitas\SiteRepo\Environment as Env;
+use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
+use tvitas\SiteRepo\Contracts\RepositoryInterface;
 
 class SiteRepository implements RepositoryInterface
 {
     use XpathQueryTrait;
 
-    private $content;
+    private ?ArrayListInterface $content;
 
-    private $env;
+    private Env $env;
 
-    private $metaInf;
+    private ?string $metaInf;
 
     public function __construct()
     {
@@ -23,17 +26,26 @@ class SiteRepository implements RepositoryInterface
         $this->metaInf = $this->env->get('site_inf', 'site-inf.xml');
     }
 
-    public function init()
+    /**
+     * @return void
+     */
+    public function init(): void
     {
         $this->content = $this->parseXmlSite();
     }
 
-    public function get()
+    /**
+     * @return ArrayListInterface|null
+     */
+    public function get(): ?ArrayListInterface
     {
         return $this->content;
     }
 
-    private function parseXmlSite()
+    /**
+     * @return ArrayListInterface|null
+     */
+    private function parseXmlSite(): ?ArrayListInterface
     {
         $collection = new NaiveArrayList();
         $dirname = $this->env->get('database');
@@ -52,5 +64,3 @@ class SiteRepository implements RepositoryInterface
         return $collection;
     }
 }
-
-

@@ -1,92 +1,142 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo\Models\Entities;
-use tvitas\SiteRepo\Contracts\MetaEntityInterface;
+
 use tvitas\SiteRepo\Contracts\EntityInterface;
+use tvitas\SiteRepo\Contracts\MetaEntityInterface;
 
 final class Meta implements EntityInterface, MetaEntityInterface
 {
-	private $fillable = [
-		'name',
-		'title',
-		'description',
-		'template',
-		'teaser',
-		'origin',
-	];
+    /** @var array|string[] */
+    private array $fillable = [
+        'name',
+        'title',
+        'description',
+        'template',
+        'teaser',
+        'origin',
+    ];
+    /** @var string */
+    private string $name = '';
+    /** @var string */
+    private string $title = '';
+    /** @var string */
+    private string $description = '';
+    /** @var string */
+    private string $template = '';
+    /** @var bool */
+    private bool $teaser = false;
+    /** @var string */
+    private string $origin = '';
 
-	private $name = '';
+    /**
+     * @return array|string[]|null
+     */
+    public function fillable(): ?array
+    {
+        return $this->fillable;
+    }
 
-	private $title = '';
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
 
-	private $description = '';
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
 
-	private $template = '';
+    /**
+     * @param string $title
+     * @return void
+     */
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
 
-	private $teaser = '0';
+    /**
+     * @return string|null
+     */
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
 
-	private $origin = '';
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
 
-	public function fillable()
-	{
-		return $this->fillable;
-	}
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
 
-	public function setName($name)
-	{
-		$this->name = $name;
-	}
+    /**
+     * @param string $template
+     * @return void
+     */
+    public function setTemplate(string $template): void
+    {
+        $this->template = $template;
+    }
 
-	public function getName()
-	{
-		return $this->name;
-	}
-	public function setTitle($title)
-	{
-		$this->title = $title;
-	}
+    /**
+     * @return string|null
+     */
+    public function getTemplate(): ?string
+    {
+        return $this->template;
+    }
 
-	public function getTitle()
-	{
-		return $this->title;
-	}
+    /**
+     * @param string|null $teaser
+     * @return void
+     */
+    public function setTeaser(?string $teaser): void
+    {
+        $this->teaser = (bool)$teaser;
+    }
 
-	public function setDescription($description)
-	{
-		$this->description = $description;
-	}
+    /**
+     * @return bool
+     */
+    public function getTeaser(): bool
+    {
+        return $this->teaser;
+    }
 
-	public function getDescription()
-	{
-		return $this->description;
-	}
+    /**
+     * @param string $origin
+     * @return void
+     */
+    public function setOrigin(string $origin): void
+    {
+        $this->origin = $origin;
+    }
 
-	public function setTemplate($template)
-	{
-		$this->template = $template;
-	}
-
-	public function getTemplate()
-	{
-		return $this->template;
-	}
-
-	public function setTeaser($teaser)
-	{
-		$this->teaser = $teaser;
-	}
-
-	public function getTeaser()
-	{
-		return $this->teaser;
-	}
-
-	public function setOrigin($origin)
-	{
-		$this->origin = $origin;
-	}
-
-	public function getOrigin()
-	{
-		return $this->origin;
-	}
+    /**
+     * @return string|null
+     */
+    public function getOrigin(): ?string
+    {
+        return $this->origin;
+    }
 }

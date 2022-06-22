@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 return [
     'database' => __DIR__ . '/../database',
     'database_data' => __DIR__ . '/../database/html',

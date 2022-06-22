@@ -1,42 +1,63 @@
 <?php
+declare(strict_types=1);
+
 namespace tvitas\SiteRepo;
 
-use tvitas\SiteRepo\Models\Repositories\DirectoryRepository;
+use tvitas\SiteRepo\Environment as Env;
+use tvitas\SiteRepo\Contracts\SiteRepoInterface;
+use tvitas\SiteRepo\Contracts\RepositoryInterface;
 use tvitas\SiteRepo\Models\Repositories\FileRepository;
 use tvitas\SiteRepo\Models\Repositories\MenuRepository;
-use tvitas\SiteRepo\Models\Repositories\SiteRepository;
 use tvitas\SiteRepo\Models\Repositories\MetaRepository;
+use tvitas\SiteRepo\Models\Repositories\SiteRepository;
 use tvitas\SiteRepo\Models\Repositories\UserRepository;
-use tvitas\SiteRepo\Contracts\SiteRepoInterface;
-use tvitas\SiteRepo\Environment as Env;
+use tvitas\SiteRepo\Models\Repositories\DirectoryRepository;
 
 class SiteRepo implements SiteRepoInterface
 {
-    private $env;
+    /** @var Environment */
+    private Env $env;
 
-    private $path;
+    /** @var string */
+    private string $path;
 
-    public function __construct()
+    /**
+     * @param Environment $env
+     * @param string $config
+     */
+    public function __construct(Env $env, string $config = __DIR__ . '/../config/config.php')
     {
-        $this->env = Env::getInstance();
+        $this->env = $env;
+        $this->env->load($config);
     }
 
-    public function setPath($path)
+    /**
+     * @param ?string $path
+     * @return void
+     */
+    public function setPath(?string $path = null): void
     {
-        $this->path = $this->env->get('database_data') . '/' . trim($path, '/');
+        if (null === $path) {
+            $this->path = $this->env->get('database_data', __DIR__ . '/database/html');
+        } else {
+            $this->path = $this->env->get('database_data') . '/' . trim($path, '/');
+        }
     }
 
-    public function setFullPath($path)
+    public function setFullPath(string $path): void
     {
         $this->path = $path;
     }
 
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
 
-    public function site()
+    /**
+     * @return RepositoryInterface|null
+     */
+    public function site(): ?RepositoryInterface
     {
         $repository = null;
         if ($this->isSite()) {
@@ -46,7 +67,10 @@ class SiteRepo implements SiteRepoInterface
         return $repository;
     }
 
-    public function user()
+    /**
+     * @return UserRepository|null
+     */
+    public function user(): ?RepositoryInterface
     {
         $repository = null;
         if ($this->isUser()) {
@@ -56,7 +80,10 @@ class SiteRepo implements SiteRepoInterface
         return $repository;
     }
 
-    public function menu()
+    /**
+     * @return MenuRepository|null
+     */
+    public function menu(): ?RepositoryInterface
     {
         $repository = null;
         if ($this->isMenu()) {
@@ -66,7 +93,10 @@ class SiteRepo implements SiteRepoInterface
         return $repository;
     }
 
-    public function meta()
+    /**
+     * @return MetaRepository|null
+     */
+    public function meta(): ?RepositoryInterface
     {
         $repository = null;
         if ($this->isMeta()) {
@@ -76,7 +106,10 @@ class SiteRepo implements SiteRepoInterface
         return $repository;
     }
 
-    public function content()
+    /**
+     * @return RepositoryInterface|null
+     */
+    public function content(): ?RepositoryInterface
     {
         $repository = null;
         if ($this->isDir()) {
@@ -91,38 +124,56 @@ class SiteRepo implements SiteRepoInterface
         return $repository;
     }
 
-    private function isDir()
+    /**
+     * @return bool
+     */
+    private function isDir(): bool
     {
         return is_dir($this->path);
     }
 
-    private function isFile()
+    /**
+     * @return bool
+     */
+    private function isFile(): bool
     {
         return is_file($this->path);
     }
 
-    private function isMenu()
+    /**
+     * @return bool
+     */
+    private function isMenu(): bool
     {
-        return (file_exists($this->env->get('database')) . '/' . $this->env->get('menu_inf'));
+        return file_exists($this->env->get('database') . '/' . $this->env->get('menu_inf'));
     }
 
-    private function isSite()
+    /**
+     * @return bool
+     */
+    private function isSite(): bool
     {
-        return (file_exists($this->env->get('database')) . '/' . $this->env->get('site_inf'));
+        return file_exists($this->env->get('database') . '/' . $this->env->get('site_inf'));
     }
 
-    private function isUser()
+    /**
+     * @return bool
+     */
+    private function isUser(): bool
     {
-        return (file_exists($this->env->get('database')) . '/' . $this->env->get('user_inf'));
+        return file_exists($this->env->get('database') . '/' . $this->env->get('user_inf'));
     }
 
-    private function isMeta()
+    /**
+     * @return bool
+     */
+    private function isMeta(): bool
     {
         if ($this->isFile()) {
             return file_exists(dirname($this->path) . '/' . $this->env->get('meta_inf'));
         }
         if ($this->isDir()) {
-            return file_exists($this->path .'/' . $this->env->get('meta_inf'));
+            return file_exists($this->path . '/' . $this->env->get('meta_inf'));
         }
         return false;
     }
