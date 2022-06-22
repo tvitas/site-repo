@@ -12,7 +12,7 @@ class NaiveArrayList implements ArrayListInterface
     use MethodResolverTrait;
 
     /** @var array|null */
-    private ?array $items;
+    private ?array $items = [];
 
     /**
      * @return array|null
