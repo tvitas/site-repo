@@ -26,7 +26,7 @@ final class Location implements EntityInterface, LocationEntityInterface
     /** @var string */
     private string $icon;
     /** @var ArrayListInterface|null */
-    private ?ArrayListInterface $children;
+    private ?ArrayListInterface $children = null;
 
     public function fillable(): ?array
     {
