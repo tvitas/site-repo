@@ -10,7 +10,7 @@ interface ArrayListInterface extends Countable
     /**
      * @return Countable|null
      */
-    public function all(): ?Countable;
+    public function all(): ?array;
 
     /**
      * @param EntityInterface $item

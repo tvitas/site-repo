@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace tvitas\SiteRepo\Collections;
 
-use Countable;
 use tvitas\SiteRepo\Contracts\EntityInterface;
 use tvitas\SiteRepo\Traits\MethodResolverTrait;
 use tvitas\SiteRepo\Contracts\ArrayListInterface;
@@ -12,13 +11,13 @@ class NaiveArrayList implements ArrayListInterface
 {
     use MethodResolverTrait;
 
-    /** @var Countable|null */
-    private ?Countable $items;
+    /** @var array|null */
+    private ?array $items;
 
     /**
      * @return ArrayListInterface|null
      */
-    public function all(): ?Countable
+    public function all(): ?array
     {
         return $this->items;
     }
