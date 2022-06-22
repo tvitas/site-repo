@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metainf>
+    <dir>
+        <title>Site repository package</title>
+        <description>Repository for a website based on plain html files</description>
+        <template>single</template>
+        <teaser>false</teaser>
+    </dir>
+    <file name="aim.html">
+        <name>aim.html</name>
+        <order>0</order>
+        <title>The aim</title>
+        <description>Repository for a website based on plain html files</description>
+        <template>single</template>
+        <origin>about</origin>
+    </file>
+</metainf>

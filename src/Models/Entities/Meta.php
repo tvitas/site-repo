@@ -107,12 +107,12 @@ final class Meta implements EntityInterface, MetaEntityInterface
     }
 
     /**
-     * @param bool $teaser
+     * @param string|null $teaser
      * @return void
      */
-    public function setTeaser(bool $teaser): void
+    public function setTeaser(?string $teaser): void
     {
-        $this->teaser = $teaser;
+        $this->teaser = (bool)$teaser;
     }
 
     /**

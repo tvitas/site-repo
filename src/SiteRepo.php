@@ -21,20 +21,27 @@ class SiteRepo implements SiteRepoInterface
     /** @var string */
     private string $path;
 
-    public function __construct(Env $env)
+    /**
+     * @param Environment $env
+     * @param string $config
+     */
+    public function __construct(Env $env, string $config = __DIR__ . '/../config/config.php')
     {
         $this->env = $env;
-        $this->env->load();
-        $this->path = $this->env->get('database_data');
+        $this->env->load($config);
     }
 
     /**
-     * @param string|null $path
+     * @param ?string $path
      * @return void
      */
     public function setPath(?string $path = null): void
     {
-        $this->path = $this->env->get('database_data') . '/' . trim($path, '/');
+        if (null === $path) {
+            $this->path = $this->env->get('database_data', __DIR__ . '/database/html');
+        } else {
+            $this->path = $this->env->get('database_data') . '/' . trim($path, '/');
+        }
     }
 
     public function setFullPath(string $path): void

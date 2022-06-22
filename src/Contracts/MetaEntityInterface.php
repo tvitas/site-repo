@@ -50,10 +50,10 @@ interface MetaEntityInterface
     public function getTemplate(): ?string;
 
     /**
-     * @param bool $teaser
+     * @param string|null $teaser
      * @return void
      */
-    public function setTeaser(bool $teaser): void;
+    public function setTeaser(?string $teaser): void;
 
     /**
      * @return bool
