@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Collections\NaiveArrayList;
 use tvitas\SiteRepo\Models\Entities\Meta;
+use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
 
 class MetaRepository extends BaseRepository
 {
@@ -15,7 +17,7 @@ class MetaRepository extends BaseRepository
         $this->content = $this->metaInfo();
     }
 
-    protected function metaInfo(): NaiveArrayList
+    protected function metaInfo(): ArrayListInterface
     {
         $triggerMime = false;
         $dirname = '';

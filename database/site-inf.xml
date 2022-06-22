@@ -2,7 +2,7 @@
 <site>
     <sitemeta>
         <name>tvitas/site-repo</name>
-        <slogan>Repository for a web site based on plain html files</slogan>
+        <slogan>Repository for a website based on plain html files</slogan>
         <acronym>SiteRepo</acronym>
     </sitemeta>
 </site>

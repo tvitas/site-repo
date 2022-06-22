@@ -8,9 +8,9 @@ use Countable;
 interface ArrayListInterface extends Countable
 {
     /**
-     * @return ArrayListInterface|null
+     * @return Countable|null
      */
-    public function all(): ?ArrayListInterface;
+    public function all(): ?Countable;
 
     /**
      * @param EntityInterface $item

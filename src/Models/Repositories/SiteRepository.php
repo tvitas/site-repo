@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Collections\NaiveArrayList;
-use tvitas\SiteRepo\Contracts\ArrayListInterface;
-use tvitas\SiteRepo\Contracts\RepositoryInterface;
 use tvitas\SiteRepo\Environment as Env;
 use tvitas\SiteRepo\Models\Entities\Site;
 use tvitas\SiteRepo\Traits\XpathQueryTrait;
+use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
+use tvitas\SiteRepo\Contracts\RepositoryInterface;
 
 class SiteRepository implements RepositoryInterface
 {
@@ -18,7 +18,7 @@ class SiteRepository implements RepositoryInterface
 
     private Env $env;
 
-    private string $metaInf;
+    private ?string $metaInf;
 
     public function __construct()
     {

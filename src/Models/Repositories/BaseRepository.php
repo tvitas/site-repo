@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Contracts\ArrayListInterface;
-use tvitas\SiteRepo\Contracts\RepositoryInterface;
 use tvitas\SiteRepo\Environment as Env;
 use tvitas\SiteRepo\Traits\XpathQueryTrait;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
+use tvitas\SiteRepo\Contracts\RepositoryInterface;
 
 abstract class BaseRepository implements RepositoryInterface
 {

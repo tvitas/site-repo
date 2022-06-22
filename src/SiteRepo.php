@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace tvitas\SiteRepo;
 
-use tvitas\SiteRepo\Contracts\RepositoryInterface;
-use tvitas\SiteRepo\Contracts\SiteRepoInterface;
 use tvitas\SiteRepo\Environment as Env;
-use tvitas\SiteRepo\Models\Repositories\DirectoryRepository;
+use tvitas\SiteRepo\Contracts\SiteRepoInterface;
+use tvitas\SiteRepo\Contracts\RepositoryInterface;
 use tvitas\SiteRepo\Models\Repositories\FileRepository;
 use tvitas\SiteRepo\Models\Repositories\MenuRepository;
 use tvitas\SiteRepo\Models\Repositories\MetaRepository;
 use tvitas\SiteRepo\Models\Repositories\SiteRepository;
 use tvitas\SiteRepo\Models\Repositories\UserRepository;
+use tvitas\SiteRepo\Models\Repositories\DirectoryRepository;
 
 class SiteRepo implements SiteRepoInterface
 {
@@ -21,34 +21,27 @@ class SiteRepo implements SiteRepoInterface
     /** @var string */
     private string $path;
 
-    public function __construct()
+    public function __construct(Env $env)
     {
-        $this->env = Env::getInstance();
+        $this->env = $env;
         $this->env->load();
         $this->path = $this->env->get('database_data');
     }
 
     /**
-     * @param string $path
+     * @param string|null $path
      * @return void
      */
-    public function setPath(string $path): void
+    public function setPath(?string $path = null): void
     {
         $this->path = $this->env->get('database_data') . '/' . trim($path, '/');
     }
 
-    /**
-     * @param string $path
-     * @return void
-     */
-    public function setFullPath(string $path)
+    public function setFullPath(string $path): void
     {
         $this->path = $path;
     }
 
-    /**
-     * @return string
-     */
     public function getPath(): string
     {
         return $this->path;
@@ -83,7 +76,7 @@ class SiteRepo implements SiteRepoInterface
     /**
      * @return MenuRepository|null
      */
-    public function menu(): ?MenuRepository
+    public function menu(): ?RepositoryInterface
     {
         $repository = null;
         if ($this->isMenu()) {
@@ -96,7 +89,7 @@ class SiteRepo implements SiteRepoInterface
     /**
      * @return MetaRepository|null
      */
-    public function meta(): ?MetaRepository
+    public function meta(): ?RepositoryInterface
     {
         $repository = null;
         if ($this->isMeta()) {

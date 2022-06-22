@@ -3,14 +3,15 @@ declare(strict_types=1);
 
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Collections\NaiveArrayList;
-use tvitas\SiteRepo\Contracts\ArrayListInterface;
-use tvitas\SiteRepo\Contracts\EntityInterface;
-use tvitas\SiteRepo\Contracts\RepositoryInterface;
+use SimpleXMLElement;
 use tvitas\SiteRepo\Environment as Env;
-use tvitas\SiteRepo\Models\Entities\Location;
 use tvitas\SiteRepo\Models\Entities\Menu;
 use tvitas\SiteRepo\Traits\XpathQueryTrait;
+use tvitas\SiteRepo\Models\Entities\Location;
+use tvitas\SiteRepo\Contracts\EntityInterface;
+use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
+use tvitas\SiteRepo\Contracts\RepositoryInterface;
 
 class MenuRepository implements RepositoryInterface
 {
@@ -22,8 +23,8 @@ class MenuRepository implements RepositoryInterface
     /** @var Env */
     private Env $env;
 
-    /** @var array|null */
-    private ?array $metaInf;
+    /** @var string|null */
+    private ?string $metaInf;
 
     public function __construct()
     {
@@ -80,10 +81,10 @@ class MenuRepository implements RepositoryInterface
     }
 
     /**
-     * @param array $uris
+     * @param SimpleXMLElement $uris
      * @return ArrayListInterface
      */
-    private function parseUris(array $uris): ArrayListInterface
+    private function parseUris(SimpleXMLElement $uris): ArrayListInterface
     {
         $collection = new NaiveArrayList();
         foreach ($uris as $uri) {

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace tvitas\SiteRepo\Models\Entities;
 
-use tvitas\SiteRepo\Contracts\ArrayListInterface;
 use tvitas\SiteRepo\Contracts\EntityInterface;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
 use tvitas\SiteRepo\Contracts\MenuEntityInterface;
 
 final class Menu implements EntityInterface, MenuEntityInterface

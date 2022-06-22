@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace tvitas\SiteRepo\Models\Repositories;
 
+use tvitas\SiteRepo\Models\Entities\File;
 use tvitas\SiteRepo\Collections\NaiveArrayList;
 use tvitas\SiteRepo\Contracts\ArrayListInterface;
-use tvitas\SiteRepo\Models\Entities\File;
 
 class FileRepository extends BaseRepository
 {

@@ -3,26 +3,26 @@ declare(strict_types=1);
 
 namespace tvitas\SiteRepo\Models\Repositories;
 
-use tvitas\SiteRepo\Collections\NaiveArrayList;
-use tvitas\SiteRepo\Contracts\ArrayListInterface;
-use tvitas\SiteRepo\Contracts\EntityInterface;
-use tvitas\SiteRepo\Contracts\RepositoryInterface;
 use tvitas\SiteRepo\Environment as Env;
 use tvitas\SiteRepo\Models\Entities\User;
 use tvitas\SiteRepo\Traits\XpathQueryTrait;
+use tvitas\SiteRepo\Contracts\EntityInterface;
+use tvitas\SiteRepo\Collections\NaiveArrayList;
+use tvitas\SiteRepo\Contracts\ArrayListInterface;
+use tvitas\SiteRepo\Contracts\RepositoryInterface;
 
 class UserRepository implements RepositoryInterface
 {
     use XpathQueryTrait;
 
-    /** @var ArrayListInterface */
-    private ArrayListInterface $content;
+    /** @var ArrayListInterface|null */
+    private ?ArrayListInterface $content;
 
     /** @var Env */
     private Env $env;
 
-    /** @var string */
-    private string $metaInf;
+    /** @var string|null */
+    private ?string $metaInf;
 
     public function __construct()
     {
@@ -39,9 +39,9 @@ class UserRepository implements RepositoryInterface
     }
 
     /**
-     * @return ArrayListInterface
+     * @return ArrayListInterface|null
      */
-    public function get(): ArrayListInterface
+    public function get(): ?ArrayListInterface
     {
         return $this->content;
     }
