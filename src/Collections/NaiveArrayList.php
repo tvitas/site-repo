@@ -15,7 +15,7 @@ class NaiveArrayList implements ArrayListInterface
     private ?array $items;
 
     /**
-     * @return ArrayListInterface|null
+     * @return array|null
      */
     public function all(): ?array
     {
@@ -44,7 +44,7 @@ class NaiveArrayList implements ArrayListInterface
      */
     public function first(): mixed
     {
-        $count = $this->count();
+        $count = count($this->items);
         if (0 !== $count) {
             return $this->items[0];
         }
@@ -56,7 +56,7 @@ class NaiveArrayList implements ArrayListInterface
      */
     public function last(): mixed
     {
-        $count = $this->count();
+        $count = count($this->items);
         if (0 !== $count) {
             return $this->items[$count - 1];
         }
@@ -69,7 +69,7 @@ class NaiveArrayList implements ArrayListInterface
      */
     public function get(int $index): mixed
     {
-        $count = $this->count();
+        $count = count($this->items);
         if (0 !== $count) {
             if (($index > $count - 1) or ($index < 0)) {
                 return null;
@@ -86,7 +86,7 @@ class NaiveArrayList implements ArrayListInterface
      */
     public function indexOf(mixed $value, string $member): int
     {
-        $count = $this->count();
+        $count = count($this->items);
         if (0 !== $count) {
             $getter = $this->resolveMethodAndProperty($member, $this->items[0]);
             if ("" !== $getter) {
@@ -107,7 +107,7 @@ class NaiveArrayList implements ArrayListInterface
      */
     public function find(mixed $value, string $member): ?EntityInterface
     {
-        if (0 !== $this->count()) {
+        if (0 !== count($this->items)) {
             $getter = $this->resolveMethodAndProperty($member, $this->items[0]);
             if ("" !== $getter) {
                 foreach ($this->items as $key => $item) {
